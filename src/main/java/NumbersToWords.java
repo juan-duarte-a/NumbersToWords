@@ -15,13 +15,33 @@ public class NumbersToWords {
             "ochocientos", "novecientos"};
 
     public static void main(String[] args) {
-        long number;
+        long number = 0;
+        String numberString;
+        String numberInWords;
         Scanner sc = new Scanner(System.in);
+        boolean valid = true;
 
-        System.out.print("Ingresar un valor numérico: ");
-        number = sc.nextLong();
+        System.out.print("Ingresar un valor numérico positivo (hasta 10^18): ");
+        numberString = sc.nextLine();
 
-        System.out.println(numberToWords(number));
+        if ((numberString.length() == 19 && !numberString.equals("1000000000000000000"))
+                || numberString.length() > 19) {
+            valid = false;
+        }
+
+        try {
+            number = Long.parseLong(numberString);
+        } catch (NumberFormatException e) {
+            valid = false;
+        }
+
+        if (valid) {
+            numberInWords = numberToWords(number);
+            numberInWords = numberInWords.substring(0, 1).toUpperCase() + numberInWords.substring(1);
+            System.out.println(numberInWords);
+        } else {
+            System.out.println("¡Valor inválido!");
+        }
     }
 
     public static String numberToWords(long number) {
@@ -42,7 +62,26 @@ public class NumbersToWords {
         } else if (number < 2000) {
             numberInWords += "mil" + (number % 1000 != 0 ? " " + numberToWords(number % 1000) : "");
         } else if (number < 1000000) {
-            numberInWords += numberToWords((int) (number / 1000)) + " mil " + (number % 1000 != 0 ? numberToWords(number % 1000) : "");
+            numberInWords += numberToWords((int) (number / 1000));
+            if (numberInWords.endsWith("uno"))
+                numberInWords = numberInWords.substring(0, numberInWords.length() - 1);
+            numberInWords += " mil" + (number % 1000 != 0 ? " " + numberToWords(number % 1000) : "");
+        } else if (number < 2000000) {
+            numberInWords += "un millón" + (number % 1000000 != 0 ? " " + numberToWords(number % 1000000) : "");
+        } else if (number < 1000000000000L) {
+            numberInWords += numberToWords((int) (number / 1000000));
+            if (numberInWords.endsWith("uno"))
+                numberInWords = numberInWords.substring(0, numberInWords.length() - 1);
+            numberInWords += " millones" + (number % 1000000 != 0 ? " " + numberToWords(number % 1000000) : "");
+        } else if (number < 2000000000000L) {
+            numberInWords = "un billón" + (number % 1000000000000L != 0 ? " " + numberToWords(number % 1000000000000L) : "");
+        } else if (number < 1000000000000000000L) {
+            numberInWords = numberToWords((int) (number / 1000000000000L));
+            if (numberInWords.endsWith("uno"))
+                numberInWords = numberInWords.substring(0, numberInWords.length() - 1);
+            numberInWords += " billones" + (number % 1000000000000L != 0 ? " " + numberToWords(number % 1000000000000L) : "");
+        } else {
+            numberInWords = "un trillón";
         }
 
         return numberInWords;
