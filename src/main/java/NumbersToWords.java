@@ -25,14 +25,14 @@ public class NumbersToWords {
         numberString = sc.nextLine();
 
         if ((numberString.length() == 19 && !numberString.equals("1000000000000000000"))
-                || numberString.length() > 19) {
+                || numberString.length() > 19 || numberString.startsWith("-")) {
             valid = false;
-        }
-
-        try {
-            number = Long.parseLong(numberString);
-        } catch (NumberFormatException e) {
-            valid = false;
+        } else {
+            try {
+                number = Long.parseLong(numberString);
+            } catch (NumberFormatException e) {
+                valid = false;
+            }
         }
 
         if (valid) {
@@ -64,21 +64,21 @@ public class NumbersToWords {
         } else if (number < 1000000) {
             numberInWords += numberToWords((int) (number / 1000));
             if (numberInWords.endsWith("uno"))
-                numberInWords = numberInWords.substring(0, numberInWords.length() - 1);
+            { numberInWords = numberInWords.substring(0, numberInWords.length() - 1); }
             numberInWords += " mil" + (number % 1000 != 0 ? " " + numberToWords(number % 1000) : "");
         } else if (number < 2000000) {
             numberInWords += "un millón" + (number % 1000000 != 0 ? " " + numberToWords(number % 1000000) : "");
         } else if (number < 1000000000000L) {
             numberInWords += numberToWords((int) (number / 1000000));
             if (numberInWords.endsWith("uno"))
-                numberInWords = numberInWords.substring(0, numberInWords.length() - 1);
+            { numberInWords = numberInWords.substring(0, numberInWords.length() - 1); }
             numberInWords += " millones" + (number % 1000000 != 0 ? " " + numberToWords(number % 1000000) : "");
         } else if (number < 2000000000000L) {
             numberInWords = "un billón" + (number % 1000000000000L != 0 ? " " + numberToWords(number % 1000000000000L) : "");
         } else if (number < 1000000000000000000L) {
             numberInWords = numberToWords((int) (number / 1000000000000L));
             if (numberInWords.endsWith("uno"))
-                numberInWords = numberInWords.substring(0, numberInWords.length() - 1);
+            { numberInWords = numberInWords.substring(0, numberInWords.length() - 1); }
             numberInWords += " billones" + (number % 1000000000000L != 0 ? " " + numberToWords(number % 1000000000000L) : "");
         } else {
             numberInWords = "un trillón";
