@@ -1,18 +1,6 @@
 import java.util.Scanner;
 
 public class NumbersToWords {
-    private static final String[] unidades = {
-            "cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"};
-    private static final String[] decimos = {
-            "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve"};
-    private static final String[] vigesimos = {
-            "veinte", "veintiuno", "veintidós", "veintitrés", "veinticuatro", "veinticinco", "veintiséis", "veintisiete",
-            "veintiocho", "veintinueve"};
-    private static final String[] decenas = {
-            "treinta", "cuarenta", "cincuenta", "sesenta", "setenta", "ochenta", "noventa", "cien"};
-    private static final String[] centenas = {
-            "", "cien", "doscientos", "trescientos", "cuatrocientos", "quinientos", "seiscientos", "setecientos",
-            "ochocientos", "novecientos"};
 
     public static void main(String[] args) {
         long number = 0;
@@ -38,13 +26,26 @@ public class NumbersToWords {
         if (valid) {
             numberInWords = numberToWords(number);
             numberInWords = numberInWords.substring(0, 1).toUpperCase() + numberInWords.substring(1);
-            System.out.println(numberInWords);
+            System.out.printf("%n" + numberInWords + "%n");
         } else {
             System.out.printf("%n¡Valor inválido!%n");
         }
     }
 
     public static String numberToWords(long number) {
+        final String[] unidades = {
+                "cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"};
+        final String[] decimos = {
+                "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve"};
+        final String[] vigesimos = {
+                "veinte", "veintiuno", "veintidós", "veintitrés", "veinticuatro", "veinticinco", "veintiséis", "veintisiete",
+                "veintiocho", "veintinueve"};
+        final String[] decenas = {
+                "treinta", "cuarenta", "cincuenta", "sesenta", "setenta", "ochenta", "noventa", "cien"};
+        final String[] centenas = {
+                "", "cien", "doscientos", "trescientos", "cuatrocientos", "quinientos", "seiscientos", "setecientos",
+                "ochocientos", "novecientos"};
+
         String numberInWords = "";
 
         if (number < 10) {
