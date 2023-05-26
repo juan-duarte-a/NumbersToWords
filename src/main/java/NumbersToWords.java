@@ -64,56 +64,34 @@ public class NumbersToWords {
             }
         } else if (number < 200) {
             numberInWords.append("ciento");
-            if (number % 100 != 0 ) {
-                numberToWords(number % 100, numberInWords);
-            }
+            if (number % 100 != 0 ) { numberToWords(number % 100, numberInWords); }
         } else if (number < 1000) {
             numberInWords.append(centenas[(int) (number / 100)]);
-            if (number % 100 != 0) {
-                numberToWords(number % 100, numberInWords);
-            }
+            if (number % 100 != 0) { numberToWords(number % 100, numberInWords); }
         } else if (number < 2000) {
             numberInWords.append("mil");
-            if (number % 1000 != 0) {
-                numberToWords(number % 1000, numberInWords);
-            }
+            if (number % 1000 != 0) { numberToWords(number % 1000, numberInWords); }
         } else if (number < 1000_000) {
             numberToWords((int) (number / 1000), numberInWords);
-            if (numberInWords.toString().endsWith("uno")) {
-                numberInWords.delete(numberInWords.length() - 1, numberInWords.length());
-            }
+            if (numberInWords.toString().endsWith("uno")) { numberInWords.delete(numberInWords.length() - 1, numberInWords.length()); }
             numberInWords.append(" mil");
-            if (number % 1000 != 0) {
-                numberToWords(number % 1000, numberInWords);
-            }
+            if (number % 1000 != 0) { numberToWords(number % 1000, numberInWords); }
         } else if (number < 2000_000) {
             numberInWords.append("un millón");
-            if (number % 1000_000 != 0) {
-                numberToWords(number % 1000_000, numberInWords);
-            }
+            if (number % 1000_000 != 0) { numberToWords(number % 1000_000, numberInWords); }
         } else if (number < 1000_000_000_000L) {
             numberToWords((int) (number / 1000_000), numberInWords);
-            if (numberInWords.toString().endsWith("uno")) {
-                numberInWords.delete(numberInWords.length() - 1, numberInWords.length());
-            }
+            if (numberInWords.toString().endsWith("uno")) { numberInWords.delete(numberInWords.length() - 1, numberInWords.length()); }
             numberInWords.append(" millones");
-            if (number % 1000_000 != 0) {
-                numberToWords(number % 1000_000, numberInWords);
-            }
+            if (number % 1000_000 != 0) { numberToWords(number % 1000_000, numberInWords); }
         } else if (number < 2000_000_000_000L) {
             numberInWords.append("un billón");
-            if (number % 1000_000_000_000L != 0) {
-                numberToWords(number % 1000_000_000_000L, numberInWords);
-            }
+            if (number % 1000_000_000_000L != 0) { numberToWords(number % 1000_000_000_000L, numberInWords); }
         } else if (number < 1000_000_000_000_000_000L) {
             numberToWords((int) (number / 1000_000_000_000L), numberInWords);
-            if (numberInWords.toString().endsWith("uno")) {
-                numberInWords.delete(numberInWords.length() - 1, numberInWords.length());
-            }
+            if (numberInWords.toString().endsWith("uno")) { numberInWords.delete(numberInWords.length() - 1, numberInWords.length()); }
             numberInWords.append(" billones");
-            if (number % 1000_000_000_000L != 0) {
-                numberToWords(number % 1000_000_000_000L, numberInWords);
-            }
+            if (number % 1000_000_000_000L != 0) { numberToWords(number % 1000_000_000_000L, numberInWords); }
         } else if (number == 1000_000_000_000_000_000L) {
             numberInWords.append("un trillón");
         }
